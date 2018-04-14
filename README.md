@@ -1,5 +1,8 @@
 # TriviaGame
 
+This project allows the user to play a themed trivia game.  There are four answer choices for each question and a thirty second timer.  After the tenth question, display a result/summary page. 
+
+Ground rules:
          * 2 actors:  computer and user
          * 4 options for user choice: buttons with answers (A-B-C-D)
          * Counter allows 30 seconds for answer selection; if counter reaches zero, display timeout message
