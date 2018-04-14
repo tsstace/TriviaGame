@@ -25,4 +25,4 @@
         5. check if user has reached the last question
             if question number < 10, repeat question loop
               else
-                  display result screen, offer restart option. 
+                  display result screen, do not start timer, offer restart option. 
