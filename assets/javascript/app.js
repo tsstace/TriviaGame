@@ -1,24 +1,23 @@
 $(document).ready(function() {
     
-// paint screen    
-    function initialScreen() {
-        startScreen = "<p class='text-center main-button-container'><a class='btn btn-primary btn-lg btn-block start-button' href='#' role='button'>Start Quiz</a></p>";
-        $(".mainArea").html(startScreen);
+// load splash page    
+    function startPage() {
+        splashPage = "<p class='text-center main-button-container'><a class='btn btn-primary btn-lg btn-block start-button' role='button'>Start Quiz</a></p>";
+        $(".mainArea").html(splashPage);
     }
     
-    initialScreen();
+    startPage();
     
-//start button has been pressed
+//button has been clicked
     $("body").on("click", ".start-button", function(event){
-        clickSound.play();
+        sound.play();
         generateHTML();
         timerWrapper();
     
     });
     
     $("body").on("click", ".answer", function(event){
-        //answeredQuestion = true;
-//        clickSound.play();
+        //user has picked an answer
         selectedAnswer = $(this).text();
         if(selectedAnswer === correctAnswers[questionCounter]) {
             //correct answer
@@ -33,29 +32,29 @@ $(document).ready(function() {
     }); 
     
     $("body").on("click", ".reset-button", function(event){
-        clickSound.play();
+        sound.play();
         resetGame();
     }); 
     
     }); 
     
-    function generateLossDueToTimeOut() {
+    function generateTimeoutLoss() {
         unansweredTally++;
-        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>You ran out of time!  The correct answer was: " + correctAnswers[questionCounter] + "</p>" + "<img class='center-block img-wrong' src='assets/images/LudaTimeout.jpg'>";
+        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Hold up, heyyy?!  Time's up - the correct answer was: " + correctAnswers[questionCounter] + "</p>" + "<img class='center-block img-wrong' src='assets/images/LudaTimeout.jpg'>";
         $(".mainArea").html(gameHTML);
         setTimeout(wait, 4000);  
     }
     
     function generateWin() {
         correctTally++;
-        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Correct! The answer is: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
+        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Holla! You got it: " + correctAnswers[questionCounter] + "</p>" + imageArray[questionCounter];
         $(".mainArea").html(gameHTML);
         setTimeout(wait, 4000);  //
     }
     
     function generateLoss() {
         incorrectTally++;
-        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Wrong! The correct answer is: "+ correctAnswers[questionCounter] + "</p>" + "<img class='center-block img-wrong' src='assets/images/Luda.jpg'>";
+        gameHTML = "<p class='text-center timer-p'>Time Remaining: <span class='timer'>" + counter + "</span></p>" + "<p class='text-center'>Whoop-de-whoop, what?! The correct answer is: "+ correctAnswers[questionCounter] + "</p>" + "<img class='center-block img-wrong' src='assets/images/Luda.jpg'>";
         $(".mainArea").html(gameHTML);
         setTimeout(wait, 4000); 
     }
@@ -82,7 +81,7 @@ $(document).ready(function() {
         function thirtySeconds() {
             if (counter === 0) {
                 clearInterval(theClock);
-                generateLossDueToTimeOut();
+                generateTimeoutLoss();
             }
             if (counter > 0) {
                 counter--;
@@ -106,7 +105,7 @@ $(document).ready(function() {
         timerWrapper();
     }
     
-    var startScreen;
+    var splashPage;
     var gameHTML;
     var counter = 30;
 
@@ -133,7 +132,9 @@ $(document).ready(function() {
         ["Jam Master Jay", "The O.D.B.", "Tupac Shakur", "The Notorius B.I.G."],
         ["Doug E. Fresh", "Big Daddy Kane", "Biz Markie", "DJ Kool"]
     ];
-    var imageArray = ["<img class='center-block img-right' src='assets/images/ODB.png'>", 
+
+    var imageArray = [
+    "<img class='center-block img-right' src='assets/images/ODB.jpg'>", 
     "<img class='center-block img-right' src='assets/images/Missy.jpg'>", 
     "<img class='center-block img-right' src='assets/images/HolidaeIn.jpg'>", 
     "<img class='center-block img-right' src='assets/images/YaKidK.jpg'>", 
@@ -142,9 +143,11 @@ $(document).ready(function() {
     "<img class='center-block img-right' src='assets/images/Nicki.jpg'>", 
     "<img class='center-block img-right' src='assets/images/TCQ.jpg'>", 
     "<img class='center-block img-right' src='assets/images/Murder.jpg'>",
-    "<img class='center-block img-right' src='assets/images/DJKool.jpg'>"];
+    "<img class='center-block img-right' src='assets/images/DJKool.jpg'>"
+    ];
 
-    var correctAnswers = ["D. Ludacris", 
+    var correctAnswers = [
+    "D. Ludacris", 
     "A. 'Right Thurr' by Chingy", 
     "C. Nelly", 
     "A. Ya Kid K", 
@@ -153,12 +156,13 @@ $(document).ready(function() {
     "C. Nicki Minaj", 
     "D. Trick, please! They were all in the 'Tribe'", 
     "B. The O.D.B.",
-    "B. Big Daddy Kane"];
+    "B. Big Daddy Kane"
+    ];
 
     var questionCounter = 0;
-    var selecterAnswer;
+    var selectedAnswer;
     var theClock;
     var correctTally = 0;
     var incorrectTally = 0;
     var unansweredTally = 0;
-    var clickSound = new Audio("assets/sound/button-click.mp3");    
+    var sound = new Audio("assets/sound/button-click.mp3");    
