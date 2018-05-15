@@ -118,7 +118,7 @@ $(document).ready(function() {
     "As of 2018, who is the best selling female rap artist of all time?", 
     "Who among these artists were <strong>not</strong> key members of the iconic group 'A Tribe Called Quest'?", 
     "Whose death is <strong>not</strong> classified as an unsolved homicide?",
-    "In the video for 'Let Me Clear My Throat' who is <strong>not</strong> peforming?"];
+    "In the video for 'Let Me Clear My Throat' who is <strong>not</strong> performing?"];
 
     var answerArray = [
         ["Mariah Carey", "Busta Rhymes", "Kanye West", "Ludacris"], 
